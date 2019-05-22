@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Welcome</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        .container  {
+            margin: 20px;
+            width: 1000px;
+        }
+        .left {
+            display: inline-block;
+            vertical-align: top;
+            border: 1px solid black;
+            border-radius: 3px;
+            padding: 20px;
+            width: 35%;
+        }
+        .right {
+            display: inline-block;
+            vertical-align: top;
+            border: 1px solid black;
+            border-radius: 3px;
+            padding: 20px;
+            width: 35%;
+            margin-left: 10px;
+        }
+        .review {
+            margin-left: 20px;
+        }
+        .messages {
+            color: rgb(182, 19, 19);
+            margin-left: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome</h2>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+        <div class="left">
+            <h3>Register</h3>
+            <form action="/register" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Name:</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Name" name="name">
+                </div>
+                <div class="form-group">
+                <label for="exampleInputEmail1">Email address:</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" name="email">
+                </div>
+                <div class="form-group">
+                <label for="exampleInputPassword1">Password:</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Confirm Password:</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password" name="confirm">
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+        <div class="right">
+            <h3>Login</h3>
+            <form action="/login" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address:</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password:</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>{{book.title}}</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        .container  {
+            margin: 20px;
+            width: 1000px;
+        }
+        .review {
+            margin-left: 20px;
+        }
+        .left {
+            display: inline-block;
+            vertical-align: top;
+            width: 50%;
+        }
+        .right {
+            display: inline-block;
+            vertical-align: top;
+        }
+        h3 {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="/books">Home</a> | <a href="/">Logout</a>
+        </div>
+        <h3>{{book.title}}</h3>
+        <h4>by {{book.author}}</h4>
+        <div class="bottom">
+            <div class="left">
+                <h3>Reviews:</h3>
+                <div class="review">
+                    {% for x in book.book_reviews.all %}
+                    <h5>Rating: {{x.rating}}/5 stars</h5>
+                        <p><a href="/users/{{x.reviewer.id}}">{{x.reviewer.name}}</a> says: <span class="italics">{{x.content}}</span></p>
+                        <p class="italics">{{x.created_at}}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="right">
+                <form action="/books/{{book.id}}/add_review" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Add a Review:</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Rating (1-5 Stars)</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="rating">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Review</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

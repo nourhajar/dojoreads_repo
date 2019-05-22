@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Books Home</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        .container  {
+            margin: 20px;
+            width: 1000px;
+        }
+        .left {
+            display: inline-block;
+            vertical-align: top;
+            width: 50%;
+        }
+        .right {
+            display: inline-block;
+            vertical-align: top;
+        }
+        h3 {
+            margin-top: 20px;
+        }
+        .indent {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="/books">Home</a> | <a href="/books/add">Add a Book</a> | <a href="/">Logout</a>
+        </div>
+        <h3>{{user.name}}</h3>
+        <div class="indent">
+        <h4>{{user.email}}</h4>
+        <h4>Total reviews: {{user.user_reviews.count}}</h4>
+        <h4>Reviewed Books:</h4>
+            {% for x in books %}
+            <p>{{x.book.title}}</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

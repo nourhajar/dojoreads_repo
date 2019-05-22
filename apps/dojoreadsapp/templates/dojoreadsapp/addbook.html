@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Add a Book</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        .container  {
+            margin: 20px;
+            width: 1000px;
+        }
+        p {
+            margin-left: 20px;
+        }
+        h3 {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="/books">Home</a> | <a href="/">Logout</a>
+        </div>
+        <h3>Add a New Book Title and Review</h3>
+        <form action="/create_book" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="formGroupExampleInput">Book Title:</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" name="title">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput">Author</label>
+                <input type="text" name="author">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Review:</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Rating (1-5 Stars)</label>
+                <select class="form-control" id="exampleFormControlSelect1" name="rating">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Book and Review</button>
+        </form>
+    </div>
+</body>
+</html>
